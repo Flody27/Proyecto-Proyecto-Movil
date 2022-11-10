@@ -3,6 +3,7 @@ package com.proyectotienda
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,6 +19,7 @@ class Carrito : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCarritoBinding.inflate(layoutInflater)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(binding.root)
 
         auth = Firebase.auth
