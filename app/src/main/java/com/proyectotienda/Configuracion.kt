@@ -2,7 +2,6 @@ package com.proyectotienda
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -19,24 +18,22 @@ class Configuracion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityConfiguracionBinding.inflate(layoutInflater)
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(binding.root)
 
         auth = Firebase.auth
 
         // Metodo para la navegacion entre activities
         bottomNavigationView = findViewById(R.id.bottom_nav)
-        bottomNavigationView.selectedItemId = R.id.configuracion
+        bottomNavigationView.selectedItemId = R.id.ajustes
         bottomNavigationView.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.configuracion -> return@OnNavigationItemSelectedListener true
-
+                R.id.ajustes -> return@OnNavigationItemSelectedListener true
                 R.id.carrito -> {
                     startActivity(Intent(applicationContext, Carrito::class.java))
                     overridePendingTransition(0, 0)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.productos -> {
+                R.id.principal -> {
                     startActivity(Intent(applicationContext, Producto::class.java))
                     overridePendingTransition(0, 0)
                     return@OnNavigationItemSelectedListener true

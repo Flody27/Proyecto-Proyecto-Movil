@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Window
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(binding.root)
         FirebaseApp.initializeApp(this)
         auth = Firebase.auth
@@ -32,8 +30,6 @@ class MainActivity : AppCompatActivity() {
         binding.btRegistrarse.setOnClickListener {
             registrarse();
         }
-
-
 
     }
 

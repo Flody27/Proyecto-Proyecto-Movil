@@ -9,15 +9,4 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="carrito_nav">Carrito</string>
-    <string name="productos_nav">Productos</string>
-    <string name="configuracion_nav">Configuracion</string>
-    <string name="titulo_appbar">Titulo nav</string>
-    <string name="titulo_cardCarrito">Titulo</string>
-    <string name="precio_cardCarrito">Precio</string>
-    <string name="talla_cardCarrito">Talla</string>
-    <string name="cantidad_cardCarrito">Cantidad</string>
-    <string name="imagen">imagen</string>
-    <string name="bt_aumentar">Aumentar</string>
-    <string name="bt_disminuir">disminuir</string>
 </resources>
