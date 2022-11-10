@@ -7,13 +7,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradientbackground"
     tools:context=".MainActivity">
-
     <TextView
         android:id="@+id/tv_Titulo"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:fontFamily="sans-serif-medium"
         android:letterSpacing="0.1"
@@ -25,7 +24,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/et_Correo"
         android:layout_width="0dp"
@@ -46,7 +44,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_Titulo" />
-
     <EditText
         android:id="@+id/et_Clave"
         android:layout_width="0dp"
@@ -68,7 +65,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_Correo" />
-
     <Button
         android:id="@+id/bt_iniciarSesion"
         android:layout_width="0dp"
@@ -82,7 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_Clave" />
-
     <Button
         android:id="@+id/bt_registrarse"
         android:layout_width="0dp"
@@ -97,5 +92,4 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_iniciarSesion" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
