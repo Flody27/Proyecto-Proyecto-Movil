@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "437680996915",
-    "project_id": "proyectotienda-52b5b",
-    "storage_bucket": "proyectotienda-52b5b.appspot.com"
+    "project_number": "262784001552",
+    "project_id": "proyectotienda-cbd85",
+    "storage_bucket": "proyectotienda-cbd85.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:437680996915:android:3dffa19c12e467ce0cd946",
+        "mobilesdk_app_id": "1:262784001552:android:f61779e61c25c168b04c95",
         "android_client_info": {
           "package_name": "com.proyectotienda"
         }
       },
       "oauth_client": [
         {
-          "client_id": "437680996915-b3d70gcdeq9mmr7v6kl4aoh755bsuhi1.apps.googleusercontent.com",
+          "client_id": "262784001552-rr5ciiul1gmjqergsje0ddmo5en3p8c5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAFAX0pfVH5IFA8OxEPBedQpXuHwS9zWD0"
+          "current_key": "AIzaSyAq0bXqQgCO6WDZz5wOzUqKywJw82mmZOo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "437680996915-b3d70gcdeq9mmr7v6kl4aoh755bsuhi1.apps.googleusercontent.com",
+              "client_id": "262784001552-rr5ciiul1gmjqergsje0ddmo5en3p8c5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
