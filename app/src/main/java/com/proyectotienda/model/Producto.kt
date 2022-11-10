@@ -1,4 +1,25 @@
 package com.proyectotienda.model
 
-class Producto {
-}
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+
+@Parcelize
+data class Producto(
+
+    var id: String,
+    val nombre: String,
+    val descripcion: String,
+    val precio: Double,
+    val colores: String?,
+    val tallas: String?,
+    ) : Parcelable{
+
+        constructor() :
+                    this("","","",0.0,"","")
+    }
+
+
+
+
+
