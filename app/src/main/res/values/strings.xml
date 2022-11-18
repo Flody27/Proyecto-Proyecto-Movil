@@ -16,4 +16,18 @@
     <string name="imagen">imagen</string>
     <string name="bt_aumentar">Aumentar</string>
     <string name="bt_disminuir">disminuir</string>
+    <string name="bt_add_producto">Subir Producto</string>
+    <string name="msg_add_producto">Producto Agregado Exitosamente</string>
+    <string name="msg_data">Algo Fallo</string>
+
+    <string name="txt_NombreProd">Nombre del Producto</string>
+    <string name="txt_DescripcionProd">Descripcion</string>
+    <string name="txt_PrecioProd">Precio</string>
+    <string name="txt_ColoresProd">Colores</string>
+    <string name="txt_TallasProd">Tallas</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="agregar_nuevo_producto_titulo">Agregar Nuevo Producto</string>
 </resources>
