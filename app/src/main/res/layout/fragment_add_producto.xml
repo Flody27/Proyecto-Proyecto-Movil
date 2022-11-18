@@ -43,7 +43,8 @@
         android:ems="10"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        android:text="@string/txt_PrecioProd" />
+        android:text="@string/txt_PrecioProd"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/etColoresProd"

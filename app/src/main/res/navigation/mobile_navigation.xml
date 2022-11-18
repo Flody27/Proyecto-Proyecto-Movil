@@ -8,5 +8,18 @@
         android:id="@+id/addProductoFragment"
         android:name="com.proyectotienda.ui.producto.AddProductoFragment"
         android:label="fragment_add_producto"
-        tools:layout="@layout/fragment_add_producto" />
+        tools:layout="@layout/fragment_add_producto" >
+        <action
+            android:id="@+id/action_addProductoFragment_to_productoFragment"
+            app:destination="@id/productoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productoFragment"
+        android:name="com.proyectotienda.ui.producto.ProductoFragment"
+        android:label="fragment_producto"
+        tools:layout="@layout/fragment_producto" >
+        <action
+            android:id="@+id/action_productoFragment_to_addProductoFragment"
+            app:destination="@id/addProductoFragment" />
+    </fragment>
 </navigation>

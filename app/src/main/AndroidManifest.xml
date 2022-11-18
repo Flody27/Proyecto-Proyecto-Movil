@@ -13,21 +13,21 @@
         android:theme="@style/Theme.ProyectoTienda"
         tools:targetApi="31">
         <activity
-            android:name=".Carrito"
+            android:name=".CarritoMain"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Configuracion"
+            android:name=".ConfiguracionMain"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Producto"
+            android:name=".ProductoMain"
             android:exported="false"
             android:label="@string/productos_nav">
             <meta-data

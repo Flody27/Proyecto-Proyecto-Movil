@@ -1,47 +1,54 @@
 package com.proyectotienda
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.proyectotienda.databinding.ActivityCarritoBinding
+import com.proyectotienda.databinding.ActivityConfiguracionBinding
 
-class Carrito : AppCompatActivity() {
+
+class ConfiguracionMain : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var binding: ActivityCarritoBinding
+    private lateinit var binding: ActivityConfiguracionBinding
     private lateinit var auth: FirebaseAuth
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCarritoBinding.inflate(layoutInflater)
+        binding = ActivityConfiguracionBinding.inflate(layoutInflater)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(binding.root)
 
         auth = Firebase.auth
 
+        // Metodo para la navegacion entre activities
         bottomNavigationView = findViewById(R.id.bottom_nav)
-        bottomNavigationView.selectedItemId = R.id.carrito
+        bottomNavigationView.selectedItemId = R.id.ajustes
         bottomNavigationView.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.carrito -> return@OnNavigationItemSelectedListener true
-                R.id.principal-> {
-                    startActivity(Intent(applicationContext, Producto::class.java))
+                R.id.ajustes -> return@OnNavigationItemSelectedListener true
+                R.id.carrito -> {
+                    startActivity(Intent(applicationContext, CarritoMain::class.java))
                     overridePendingTransition(0, 0)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.ajustes -> {
-                    startActivity(Intent(applicationContext, Configuracion::class.java))
+                R.id.principal -> {
+                    startActivity(Intent(applicationContext, ProductoMain::class.java))
                     overridePendingTransition(0, 0)
                     return@OnNavigationItemSelectedListener true
                 }
             }
             false
         })
+
+        binding.btCerrarSesion.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+            finish()
+        }
     }
 
     override fun onStart() {
@@ -52,4 +59,6 @@ class Carrito : AppCompatActivity() {
             finish()
         }
     }
+
+
 }

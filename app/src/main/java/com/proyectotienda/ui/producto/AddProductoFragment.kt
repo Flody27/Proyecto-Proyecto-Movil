@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.proyectotienda.R
 import com.proyectotienda.databinding.FragmentAddProductoBinding
 import com.proyectotienda.model.Producto
@@ -48,7 +49,7 @@ class AddProductoFragment : Fragment() {
             val producto = Producto("",nombreProducto,descripcionProducto,precioProducto,coloresProducto,tallasProducto)
              productoViewModel.addProducto(producto)
             Toast.makeText(requireContext(),getString(R.string.msg_add_producto),Toast.LENGTH_SHORT).show()
-
+            findNavController().navigate(R.id.action_addProductoFragment_to_productoFragment)
         }else{
             Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_LONG).show()
         }

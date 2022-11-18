@@ -16,6 +16,7 @@
     <string name="imagen">imagen</string>
     <string name="bt_aumentar">Aumentar</string>
     <string name="bt_disminuir">disminuir</string>
+    <string name="bt_agregar">Agregar</string>
     <string name="bt_add_producto">Subir Producto</string>
     <string name="msg_add_producto">Producto Agregado Exitosamente</string>
     <string name="msg_data">Algo Fallo</string>

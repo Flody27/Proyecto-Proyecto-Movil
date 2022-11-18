@@ -2,14 +2,18 @@ package com.proyectotienda.data
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.ktx.Firebase
 import com.proyectotienda.model.Compras
 
 class ComprasDao {
 
     private val coleccion1 = "Compras"
+    private val coleccion2 = "MisCompras"
+    private val usuario =  Firebase.auth.currentUser?.email.toString()
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     init {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
@@ -21,11 +25,14 @@ class ComprasDao {
         if (compras.idCompra.isEmpty()){
             documento = firestore
                 .collection(coleccion1)
+                .document(usuario).collection(coleccion2)
                 .document()
             compras.idCompra = documento.id
         }
         else{
-            documento = firestore.collection(coleccion1).document(compras.idCompra)
+            documento = firestore.collection(coleccion1)
+                .document(usuario).collection(coleccion2)
+                .document(compras.idCompra)
         }
         documento.set(compras)
             .addOnSuccessListener {
@@ -43,6 +50,7 @@ class ComprasDao {
         if (compras.idCompra.isNotEmpty()){
             firestore
                 .collection(coleccion1)
+                .document(usuario).collection(coleccion2)
                 .document(compras.idCompra)
                 .delete()
                 .addOnSuccessListener {
@@ -60,6 +68,7 @@ class ComprasDao {
 
         firestore
             .collection(coleccion1)
+            .document(usuario).collection(coleccion2)
             .addSnapshotListener{ instantanea, e ->
                 if (e != null){
                     return@addSnapshotListener
