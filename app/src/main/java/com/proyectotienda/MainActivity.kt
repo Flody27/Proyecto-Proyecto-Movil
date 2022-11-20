@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun actuliza(user: FirebaseUser?) {
         if (user != null) {
-            val intent = Intent(this, ProductoMain::class.java)
+            val intent = Intent(this, TiendaActivity::class.java)
             startActivity(intent)
         }
     }

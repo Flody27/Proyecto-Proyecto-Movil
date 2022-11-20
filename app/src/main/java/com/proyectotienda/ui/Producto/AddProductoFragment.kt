@@ -1,4 +1,4 @@
-package com.proyectotienda.ui.producto
+package com.proyectotienda.ui.Producto
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,18 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.proyectotienda.R
 import com.proyectotienda.databinding.FragmentAddProductoBinding
 import com.proyectotienda.model.Producto
 import com.proyectotienda.viewModel.ProductoViewModel
-
+import androidx.navigation.fragment.findNavController
 
 class AddProductoFragment : Fragment() {
 
-
     private lateinit var productoViewModel: ProductoViewModel
-
 
     private var _binding: FragmentAddProductoBinding? = null
     private val binding get() = _binding!!
@@ -28,7 +25,7 @@ class AddProductoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val ProductoViewModel =
+         productoViewModel =
             ViewModelProvider(this).get(ProductoViewModel::class.java)
 
         _binding = FragmentAddProductoBinding.inflate(inflater, container, false)
@@ -42,14 +39,14 @@ class AddProductoFragment : Fragment() {
     private fun addProducto() {
         val nombreProducto = binding.etNombreProd.text.toString()
         if (nombreProducto.isNotEmpty()) {
-            val descripcionProducto = binding.etDescripcionProd.text.toString()
+
             val precioProducto = binding.etPrecioProd.text.toString().toDouble()
             val coloresProducto = binding.etColoresProd.text.toString()
             val tallasProducto = binding.etTallasProd.text.toString()
-            val producto = Producto("",nombreProducto,descripcionProducto,precioProducto,coloresProducto,tallasProducto)
+            val producto = Producto("",nombreProducto,precioProducto,coloresProducto,tallasProducto)
              productoViewModel.addProducto(producto)
             Toast.makeText(requireContext(),getString(R.string.msg_add_producto),Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_addProductoFragment_to_productoFragment)
+            findNavController().navigate(R.id.action_addProductoFragment_to_navigation_productos)
         }else{
             Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_LONG).show()
         }

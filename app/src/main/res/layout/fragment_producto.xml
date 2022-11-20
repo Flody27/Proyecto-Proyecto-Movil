@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.producto.ProductoFragment" >
+    tools:context=".ui.Producto.ProductoFragment"
+    android:background="@color/gris">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bt_agregar"
@@ -16,17 +17,16 @@
         android:contentDescription="@string/bt_agregar"
         android:src="@drawable/ic_agregar"
         app:backgroundTint="@color/azul_claro"
+        app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="40dp"
         tools:ignore="ImageContrastCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Reciclador"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

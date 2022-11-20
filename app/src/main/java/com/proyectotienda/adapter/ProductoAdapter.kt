@@ -12,7 +12,8 @@ class ProductoAdapter : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>
     RecyclerView.ViewHolder(itemBinding.root)    {
 
         fun bindindItems(producto: Producto){
-
+            itemBinding.tvTituloProducto.text = producto.nombre
+            itemBinding.tvPrecioProducto.text = producto.precio.toString()
         }
 
     }

@@ -3,23 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/addProductoFragment">
+    app:startDestination="@id/navigation_productos">
+
+    <fragment
+        android:id="@+id/navigation_productos"
+        android:name="com.proyectotienda.ui.Producto.ProductoFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_producto" >
+        <action
+            android:id="@+id/action_navigation_productos_to_addProductoFragment"
+            app:destination="@id/addProductoFragment" />
+        <action
+            android:id="@+id/action_navigation_productos_to_productoVistaFragment"
+            app:destination="@id/productoVistaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_carrito"
+        android:name="com.proyectotienda.ui.Carrito.CarritoFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_carrito" />
+
+    <fragment
+        android:id="@+id/navigation_ajustes"
+        android:name="com.proyectotienda.ui.Configuracion.ConfiguracionFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_configuracion" />
     <fragment
         android:id="@+id/addProductoFragment"
-        android:name="com.proyectotienda.ui.producto.AddProductoFragment"
+        android:name="com.proyectotienda.ui.Producto.AddProductoFragment"
         android:label="fragment_add_producto"
         tools:layout="@layout/fragment_add_producto" >
         <action
-            android:id="@+id/action_addProductoFragment_to_productoFragment"
-            app:destination="@id/productoFragment" />
+            android:id="@+id/action_addProductoFragment_to_navigation_productos"
+            app:destination="@id/navigation_productos" />
     </fragment>
     <fragment
-        android:id="@+id/productoFragment"
-        android:name="com.proyectotienda.ui.producto.ProductoFragment"
-        android:label="fragment_producto"
-        tools:layout="@layout/fragment_producto" >
+        android:id="@+id/productoVistaFragment"
+        android:name="com.proyectotienda.ui.Producto.ProductoVistaFragment"
+        android:label="ProductoVistaFragment" >
         <action
-            android:id="@+id/action_productoFragment_to_addProductoFragment"
-            app:destination="@id/addProductoFragment" />
+            android:id="@+id/action_productoVistaFragment_to_navigation_productos"
+            app:destination="@id/navigation_productos" />
     </fragment>
 </navigation>

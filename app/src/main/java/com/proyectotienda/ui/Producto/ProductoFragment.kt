@@ -1,4 +1,4 @@
-package com.proyectotienda.ui.producto
+package com.proyectotienda.ui.Producto
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -31,7 +31,7 @@ class ProductoFragment : Fragment() {
 
         // Nav para el fragment add producto
         binding.btAgregar.setOnClickListener {
-            findNavController().navigate(R.id.action_productoFragment_to_addProductoFragment)
+            findNavController().navigate(R.id.action_navigation_productos_to_addProductoFragment)
         }
 
         // Rycler view

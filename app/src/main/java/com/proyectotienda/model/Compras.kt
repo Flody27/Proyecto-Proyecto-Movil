@@ -7,15 +7,13 @@ import kotlinx.parcelize.Parcelize
 data class Compras (
 
     var idCompra: String,
-    val montoTotal: String,
-    val montoIva: String,
-    val fechaCompras: String,
-    val compras:String,
+    val montoTotal: String?,
+    val fechaCompras: String?,
+    val productoId: String?,
     ) : Parcelable {
 
     constructor() :
             this("",
-                "",
                 "",
                 "",
                 "")

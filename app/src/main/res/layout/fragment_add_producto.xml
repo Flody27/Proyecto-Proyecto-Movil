@@ -1,72 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.producto.AddProductoFragment">
-
-    <TextView
-        android:id="@+id/tituloAddProducto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/agregar_nuevo_producto_titulo"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    android:padding="5dp"
+    android:textAlignment="center"
+    tools:context=".ui.Producto.AddProductoFragment"
+    android:background="@color/gris">
 
     <EditText
         android:id="@+id/etNombreProd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/txt_NombreProd"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/txt_NombreProd"
-        android:autofillHints="" />
-
-    <EditText
-        android:id="@+id/etDescripcionProd"
-        android:layout_width="match_parent"
-        android:layout_height="107dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/txt_DescripcionProd"
-        android:textAlignment="viewStart"
-        android:autofillHints="" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
         android:id="@+id/etPrecioProd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:ems="10"
+        android:hint="@string/txt_PrecioProd"
+        android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        android:text="@string/txt_PrecioProd"
-        android:importantForAutofill="no" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
         android:id="@+id/etColoresProd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/txt_ColoresProd"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/txt_ColoresProd" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
         android:id="@+id/etTallasProd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/talla_cardCarrito"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/txt_TallasProd" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <Button
         android:id="@+id/btAddProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/bt_add_producto" />
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="@color/azul_claro"
+        android:text="@string/bt_add_producto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:cornerRadius="10dp" />
 </LinearLayout>
