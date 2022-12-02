@@ -1,5 +1,6 @@
 package com.proyectotienda
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Window
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,6 +21,7 @@ class TiendaActivity : AppCompatActivity() {
         binding = ActivityTiendaBinding.inflate(layoutInflater)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(binding.root)
+
 
         val navView: BottomNavigationView = binding.navView
 

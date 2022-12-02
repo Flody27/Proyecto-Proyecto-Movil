@@ -1,16 +1,21 @@
 package com.proyectotienda.ui.Producto
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.proyectotienda.R
 import com.proyectotienda.adapter.ProductoAdapter
 import com.proyectotienda.databinding.FragmentProductoBinding
+import com.proyectotienda.model.Producto
 import com.proyectotienda.viewModel.ProductoViewModel
 
 class ProductoFragment : Fragment() {
@@ -31,19 +36,19 @@ class ProductoFragment : Fragment() {
 
         // Nav para el fragment add producto
         binding.btAgregar.setOnClickListener {
+
             findNavController().navigate(R.id.action_navigation_productos_to_addProductoFragment)
         }
 
-        // Rycler view
+
         val productoAdapter = ProductoAdapter()
         val reciclador = binding.Reciclador
         reciclador.adapter = productoAdapter
-        reciclador.layoutManager = LinearLayoutManager(requireContext())
+        reciclador.layoutManager = GridLayoutManager(requireContext(),2)
 
         productoViewModel.getProductos.observe(viewLifecycleOwner) { productos ->
             productoAdapter.setListaProductos(productos)
         }
-
 
         return binding.root
 

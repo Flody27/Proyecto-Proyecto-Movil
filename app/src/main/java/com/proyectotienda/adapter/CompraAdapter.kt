@@ -3,26 +3,31 @@ package com.proyectotienda.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.proyectotienda.databinding.CardHistorialComprasBinding
 import com.proyectotienda.databinding.CardItemCarritoBinding
-import com.proyectotienda.databinding.CardProductoBinding
+import com.proyectotienda.model.Compras
 import com.proyectotienda.model.Producto
+import com.proyectotienda.ui.Producto.ProductoVistaFragmentArgs
+
 
 class CompraAdapter : RecyclerView.Adapter<CompraAdapter.CompraViewHolder>() {
 
-    inner class CompraViewHolder(private val itemBinding: CardItemCarritoBinding) :
+    inner class CompraViewHolder(private val itemBinding:CardHistorialComprasBinding) :
     RecyclerView.ViewHolder(itemBinding.root)    {
 
-        fun bindindItems(producto: Producto){
-
+        fun bindindItems(compras: Compras){
+            itemBinding.idCompra.text = compras.idCompra
+            itemBinding.fecha.text =  compras.fechaCompras
+            itemBinding.total.text = compras.montoTotal.toString()
         }
 
     }
 
-    private var listaProductosCarrito = emptyList<Producto>()
+    private var listaHistorialCompras = emptyList<Compras>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompraViewHolder {
 
-        val itemBinding = CardItemCarritoBinding.inflate(
+        val itemBinding = CardHistorialComprasBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false)
@@ -31,17 +36,17 @@ class CompraAdapter : RecyclerView.Adapter<CompraAdapter.CompraViewHolder>() {
 
     override fun onBindViewHolder(holder: CompraViewHolder, position: Int) {
 
-        val lugar = listaProductosCarrito[position]
-        holder.bindindItems(lugar)
+        val compra = listaHistorialCompras[position]
+        holder.bindindItems(compra)
     }
 
     override fun getItemCount(): Int {
-        return listaProductosCarrito.size
+        return listaHistorialCompras.size
     }
 
-    fun setListaProductos(productos: List<Producto>)
+    fun setListaCompras(compras: List<Compras>)
     {
-        this.listaProductosCarrito = productos
+        this.listaHistorialCompras = compras
         notifyDataSetChanged()
     }
 

@@ -1,60 +1,108 @@
 package com.proyectotienda.ui.Producto
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.proyectotienda.R
+import com.proyectotienda.adapter.TallaAdapter
+import com.proyectotienda.adapter.TallaAdminAdapter
+import com.proyectotienda.databinding.CardProductoBinding
+import com.proyectotienda.databinding.CardTallaBinding
+import com.proyectotienda.databinding.FragmentProductoVistaBinding
+import com.proyectotienda.model.Carrito
+import com.proyectotienda.viewModel.CarritoViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProductoVistaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProductoVistaFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private val args by navArgs<ProductoVistaFragmentArgs>()
+
+    private lateinit var carritoViewModel: CarritoViewModel
+
+    private var _binding: FragmentProductoVistaBinding? = null
+
+    private val binding get() = _binding!!
+
+    private var tallas: List<String?> = ArrayList()
+
+    private var talla: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_producto_vista, container, false)
+
+        carritoViewModel =
+            ViewModelProvider(this).get(CarritoViewModel::class.java)
+
+        _binding = FragmentProductoVistaBinding.inflate(inflater, container, false)
+
+        binding.tituloProducto.text = args.producto.nombre
+        binding.precioProducto.text = args.producto.precio.toString()
+
+        tallas = args.producto.tallas
+
+        binding.btEditarProducto.setOnClickListener {
+
+            val action = ProductoVistaFragmentDirections
+                .actionProductoVistaFragmentToUpdateProducto(args.producto)
+            findNavController().navigate(action)
+        }
+
+        val tallasAdpater = TallaAdapter()
+        val recilador = binding.recilcadorTallas
+        recilador.adapter = tallasAdpater
+        recilador.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        tallasAdpater.setListaTallas(tallas)
+
+        binding.btAgregarCarrito.setOnClickListener {
+            talla = tallasAdpater.talla()
+            agregarAlcarrito()
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProductoVistaFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProductoVistaFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun agregarAlcarrito() {
+
+
+        if (talla.isEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                "selecione una talla",
+                Toast.LENGTH_LONG
+            ).show()
+        } else {
+            val productoID = args.producto.id
+            val producto = args.producto.nombre
+            val precio = args.producto.precio
+            val carrito = Carrito("", productoID, producto, precio, 1, talla)
+            carritoViewModel.addCarrito(carrito)
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.msg_carrito_exito),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
+
+
 }

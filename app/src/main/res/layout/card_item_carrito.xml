@@ -49,12 +49,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="28dp"
             android:layout_marginBottom="32dp"
             android:text="@string/cantidad_cardCarrito"
             app:layout_constraintBottom_toTopOf="@+id/bt_disminuir"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_aumentar" />
+            app:layout_constraintTop_toBottomOf="@+id/bt_aumentar"
+            app:layout_constraintVertical_bias="0.444" />
 
         <TextView
             android:id="@+id/tv_Precio"
@@ -78,10 +79,10 @@
             android:contentDescription="@string/bt_aumentar"
             android:minWidth="40dp"
             android:minHeight="40dp"
+            app:itemIconTint="@drawable/selector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_add"
-            app:itemIconTint="@drawable/selector"
             tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
@@ -92,11 +93,12 @@
             android:layout_marginBottom="8dp"
             android:background="#00FFFFFF"
             android:contentDescription="@string/bt_disminuir"
+            android:enabled="true"
             android:minWidth="40dp"
             android:minHeight="40dp"
+            app:itemIconTint="@drawable/selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:itemIconTint="@drawable/selector"
             app:srcCompat="@drawable/ic_remove"
             tools:ignore="TouchTargetSizeCheck" />
 

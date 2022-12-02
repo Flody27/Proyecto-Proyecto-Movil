@@ -15,7 +15,6 @@ class ProductoViewModel(application: Application) : AndroidViewModel(application
 
     val getProductos: MutableLiveData<List<Producto>> = productoRepository.getProductos
 
-
     fun addProducto(producto: Producto){
         viewModelScope.launch(Dispatchers.IO){
             productoRepository.addProducto(producto)
@@ -27,4 +26,6 @@ class ProductoViewModel(application: Application) : AndroidViewModel(application
             productoRepository.deleteProducto(producto)
         }
     }
+
+
 }

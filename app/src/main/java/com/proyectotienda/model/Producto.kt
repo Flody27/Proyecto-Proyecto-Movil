@@ -9,13 +9,13 @@ data class Producto(
 
     var id: String,
     val nombre: String?,
-    val precio: Double,
+    val precio: Int?,
     val colores: String?,
-    val tallas: String?,
+    var tallas: List<String?>,
     ) : Parcelable{
 
         constructor() :
-                    this("","",0.0,"","")
+                    this("","",0,"", listOf())
     }
 
 

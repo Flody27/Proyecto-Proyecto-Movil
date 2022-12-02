@@ -12,7 +12,7 @@
     <string name="titulo_cardCarrito">Titulo</string>
     <string name="precio_cardCarrito">Precio</string>
     <string name="talla_cardCarrito">Talla</string>
-    <string name="cantidad_cardCarrito">Cantidad</string>
+    <string name="cantidad_cardCarrito">00</string>
     <string name="imagen">imagen</string>
     <string name="bt_aumentar">Aumentar</string>
     <string name="bt_disminuir">disminuir</string>
@@ -30,14 +30,40 @@
     <string name="bt_agregar_carrito">Agregar al carrito</string>
     <string name="bt_editar_producto">Editar producto</string>
     <string name="bt_realizar_compra">Comprar</string>
+    <string name="bt_vaciar_carrito">Vaciar carrito</string>
     <string name="precio_total">Precio Total</string>
+    <string name="msg_carrito_exito">Se agrego al carrito</string>
+    <string name="msg_carrito_error">Error agregando al carrito</string>
+    <string name="vaciar_carrito">Vaciar carrito</string>
+    <string name="pregunta_vaciar_carrito">¿Desea vaciar el carrito?</string>
 
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="agregar_nuevo_producto_titulo">Agregar Nuevo Producto</string>
     <string name="title_activity_tienda">Tienda</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="msg_si">si</string>
+    <string name="msg_no">no</string>
+    <string name="msg_compra_realizada">Compra realizada</string>
+    <string name="err_compra_realizada">Erro en realizar compra</string>
+    <string name="carrito_vacio">Carrito Vacio</string>
+    <string name="bt_update_producto">Actualizar producto</string>
+    <string name="bt_delete_producto">Eliminar producto</string>
+    <string name="msg_producto_updated">Producto Actualizado</string>
+    <string name="err_producto_updated">Error actulizando producto</string>
+    <string name="title_eliminar_producto">Eliminar Producto</string>
+    <string name="pregunta_delete_producto">¿Desea borrar el producto</string>
+    <string name="msg_producto_deleted">Producto eliminado</string>
+    <string name="bt_google">Usar google</string>
+    <string name="usuario">usuario</string>
+    <string name="foto_perfil">foto perfil</string>
+    <string name="historial_compras">Historial Compras</string>
+    <string name="id_compra_titulo">Id compra:</string>
+    <string name="fecha_titulo">Comprado:</string>
+    <string name="total_titulo">Total:</string>
+    <string name="token_google" translatable="false">262784001552-rr5ciiul1gmjqergsje0ddmo5en3p8c5.apps.googleusercontent.com</string>
+
+
 </resources>

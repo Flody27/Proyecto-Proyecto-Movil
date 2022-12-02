@@ -15,7 +15,10 @@ class ProductoRepository(private val productoDao: ProductoDao) {
         productoDao.deleteProducto(producto)
     }
 
+
     val getProductos : MutableLiveData<List<Producto>> = productoDao.getProductos()
+
+
 
 
 

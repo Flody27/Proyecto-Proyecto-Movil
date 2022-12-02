@@ -2,9 +2,11 @@ package com.proyectotienda.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.proyectotienda.databinding.CardProductoBinding
 import com.proyectotienda.model.Producto
+import com.proyectotienda.ui.Producto.ProductoFragmentDirections
 
 class ProductoAdapter : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>() {
 
@@ -14,6 +16,12 @@ class ProductoAdapter : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>
         fun bindindItems(producto: Producto){
             itemBinding.tvTituloProducto.text = producto.nombre
             itemBinding.tvPrecioProducto.text = producto.precio.toString()
+
+            itemBinding.cardProducto.setOnClickListener{
+                val action = ProductoFragmentDirections.actionNavigationProductosToProductoVistaFragment(producto)
+                itemView.findNavController().navigate(action)
+            }
+
         }
 
     }
@@ -31,8 +39,8 @@ class ProductoAdapter : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>
 
     override fun onBindViewHolder(holder: ProductoViewHolder, position: Int) {
 
-        val lugar = listaProductos[position]
-        holder.bindindItems(lugar)
+        val producto = listaProductos[position]
+        holder.bindindItems(producto)
     }
 
     override fun getItemCount(): Int {

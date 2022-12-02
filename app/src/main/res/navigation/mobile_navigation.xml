@@ -45,5 +45,23 @@
         <action
             android:id="@+id/action_productoVistaFragment_to_navigation_productos"
             app:destination="@id/navigation_productos" />
+        <argument
+            android:name="producto"
+            app:argType="com.proyectotienda.model.Producto" />
+        <action
+            android:id="@+id/action_productoVistaFragment_to_updateProducto"
+            app:destination="@id/updateProducto" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateProducto"
+        android:name="com.proyectotienda.ui.Producto.UpdateProducto"
+        android:label="fragment_update_producto"
+        tools:layout="@layout/fragment_update_producto" >
+        <action
+            android:id="@+id/action_updateProducto_to_navigation_productos"
+            app:destination="@id/navigation_productos" />
+        <argument
+            android:name="producto"
+            app:argType="com.proyectotienda.model.Producto" />
     </fragment>
 </navigation>
