@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proyectotienda.R
 import com.proyectotienda.adapter.TallaAdminAdapter
 import com.proyectotienda.databinding.FragmentUpdateProductoBinding
@@ -51,7 +52,9 @@ class UpdateProducto : Fragment() {
 
         binding.etNombreProd.setText(args.producto.nombre)
         binding.etPrecioProd.setText(args.producto.precio.toString())
-        binding.etColoresProd.setText(args.producto.colores)
+        Glide.with(binding.root.context)
+            .load(args.producto.imagen)
+            .into(binding.imageView4)
 
 
         tallasAdapter = TallaAdminAdapter()

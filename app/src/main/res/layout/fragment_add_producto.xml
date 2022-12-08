@@ -17,6 +17,37 @@
         android:layout_marginHorizontal="8dp"
         android:orientation="vertical">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="5dp">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="0dp"
+                android:layout_height="280dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <Button
+                android:id="@+id/bt_add_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/azul_claro"
+                android:text="@string/Agregar_imagen"
+                app:cornerRadius="5dp"
+                app:icon="@drawable/ic_baseline_add_photo_alternate_24"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <EditText
             android:id="@+id/etNombreProd"
             android:layout_width="match_parent"
@@ -39,17 +70,6 @@
             android:minHeight="48dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <EditText
-            android:id="@+id/etColoresProd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="2dp"
-            android:autofillHints=""
-            android:hint="@string/txt_ColoresProd"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -57,32 +77,34 @@
 
             <EditText
                 android:id="@+id/etTallasProd"
-                android:layout_width="0dp"
+                android:layout_width="220dp"
                 android:layout_height="60dp"
                 android:layout_marginVertical="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="2dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/talla_cardCarrito"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintEnd_toStartOf="@+id/bt_agregar_talla"
+                app:layout_constraintBottom_toTopOf="@+id/RecicladorTallas"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/bt_agregar_talla"
                 android:layout_width="0dp"
-                android:layout_height="62dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
                 android:backgroundTint="@color/azul_claro"
                 android:text="@string/bt_agregar"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:cornerRadius="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/RecicladorTallas"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/etTallasProd"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -97,11 +119,14 @@
         <Button
             android:id="@+id/btAddProducto"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="54dp"
             android:layout_marginVertical="10dp"
             android:backgroundTint="@color/azul_claro"
             android:text="@string/bt_add_producto"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:cornerRadius="25dp" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/ic_agregar"
+            app:iconGravity="textStart"
+            app:iconSize="30dp" />
     </LinearLayout>
     </ScrollView>

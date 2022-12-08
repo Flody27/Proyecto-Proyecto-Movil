@@ -62,9 +62,9 @@ class CarritoFragment : Fragment() {
         reciclador.adapter = carritoAdapter
         reciclador.layoutManager = LinearLayoutManager(requireContext())
         var precio:Int? = 0
+
         carritoViewModel.getCarrito.observe(viewLifecycleOwner) { carrito ->
             carritoAdapter.setListaProductos(carrito)
-
             if (carrito.isEmpty()) {
                 binding.btRealizarCompra.isEnabled = false
                 val gris = Color.parseColor("#BDBDBF")
@@ -92,6 +92,9 @@ class CarritoFragment : Fragment() {
         return binding.root
     }
 
+
+
+
     private fun realizarCompra() {
         var compras: Compras
         var idProductos: List<String?> = ArrayList()
@@ -103,7 +106,6 @@ class CarritoFragment : Fragment() {
                 for (producto in productos) {
                     idProductos += producto.productoId
                     montoTotal += producto.precio!!
-
                 }
             }
         }
@@ -117,7 +119,6 @@ class CarritoFragment : Fragment() {
         vaciar()
 
     }
-
 
     private fun vaciar() {
         carritoViewModel.getCarrito.observe(viewLifecycleOwner) { productos ->

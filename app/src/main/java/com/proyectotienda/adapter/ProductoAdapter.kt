@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proyectotienda.databinding.CardProductoBinding
 import com.proyectotienda.model.Producto
 import com.proyectotienda.ui.Producto.ProductoFragmentDirections
@@ -16,6 +17,11 @@ class ProductoAdapter : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>
         fun bindindItems(producto: Producto){
             itemBinding.tvTituloProducto.text = producto.nombre
             itemBinding.tvPrecioProducto.text = producto.precio.toString()
+
+            Glide.with(itemBinding.root.context)
+                .load(producto.imagen)
+                .fitCenter()
+                .into(itemBinding.imageView)
 
             itemBinding.cardProducto.setOnClickListener{
                 val action = ProductoFragmentDirections.actionNavigationProductosToProductoVistaFragment(producto)

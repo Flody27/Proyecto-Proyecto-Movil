@@ -11,6 +11,7 @@ data class Carrito (
     val producto: String?,
     var precio: Int?,
     var cantidad: Int?,
+    var imagen: String?,
     val talla: String?
     ) : Parcelable {
 
@@ -19,6 +20,8 @@ data class Carrito (
                 "",
                 "",
                 0,
-                0,"")
+                0,
+                "",
+                "")
 
 }

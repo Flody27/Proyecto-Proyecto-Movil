@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proyectotienda.databinding.CardItemCarritoBinding
 import com.proyectotienda.model.Carrito
 
@@ -16,36 +18,44 @@ class CarritoAdapter : RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() 
 
         @SuppressLint("SetTextI18n")
         fun bindindItems(carrito: Carrito) {
-            var precio: Int? = carrito.precio
+
             itemBinding.tvTituloProducto.text = carrito.producto
             itemBinding.tvTalla.text = carrito.talla
             itemBinding.tvCantidad.text = carrito.cantidad.toString()
             itemBinding.tvPrecio.text = "$${carrito.precio}"
 
-            var cantidad: Int? = 1
+            Glide.with(itemBinding.root.context)
+                .load(carrito.imagen)
 
-            if (cantidad != null) {
+                .into(itemBinding.imageView3)
+
+            val precioBase = carrito.precio
+
+            if (precioBase != null) {
 
                 itemBinding.btAumentar.setOnClickListener {
-                    cantidad += 1
-                    if (cantidad >= 1) {
+                    carrito.cantidad = carrito.cantidad?.plus(1)
+                    if (carrito.cantidad!! >= 1) {
                         itemBinding.btDisminuir.isEnabled = true
                     }
-                   itemBinding.tvCantidad.text = cantidad.toString()
-                    carrito.cantidad = cantidad
-                    precio = carrito.precio?.times(carrito.cantidad!!)
 
-                    Log.e("Precio","${carrito.precio} ${carrito.cantidad}")
+                    carrito.precio =  precioBase * carrito.cantidad!!
+                    itemBinding.tvCantidad.text = carrito.cantidad.toString()
+                    itemBinding.tvPrecio.text = "$${carrito.precio}"
+                    Log.e("Precio","${carrito.precio} , ${carrito.cantidad}")
                 }
 
                 itemBinding.btDisminuir.setOnClickListener {
-                    cantidad -= 1
-                    if (cantidad <= 1) {
+                    carrito.cantidad = carrito.cantidad?.minus(1)
+
+                    if (carrito.cantidad!! <= 1) {
                         itemBinding.btDisminuir.isEnabled = false
                     }
-                    itemBinding.tvCantidad.text = cantidad.toString()
 
-
+                    carrito.precio =  precioBase * carrito.cantidad!!
+                    itemBinding.tvCantidad.text = carrito.cantidad.toString()
+                    itemBinding.tvPrecio.text = "$${carrito.precio}"
+                    Log.e("Precio","${carrito.precio} , ${carrito.cantidad}")
                 }
 
             }
@@ -64,8 +74,10 @@ class CarritoAdapter : RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() 
             false
         )
 
+
         return CarritoViewHolder(itemBinding)
     }
+
 
     override fun onBindViewHolder(holder: CarritoViewHolder, position: Int) {
 
@@ -83,4 +95,7 @@ class CarritoAdapter : RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() 
     }
 
 
+
 }
+
+

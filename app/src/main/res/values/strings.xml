@@ -17,7 +17,7 @@
     <string name="bt_aumentar">Aumentar</string>
     <string name="bt_disminuir">disminuir</string>
     <string name="bt_agregar">Agregar</string>
-    <string name="bt_add_producto">Subir Producto</string>
+    <string name="bt_add_producto">Agregar Producto</string>
     <string name="msg_add_producto">Producto Agregado Exitosamente</string>
     <string name="msg_data">Algo Fallo</string>
 
@@ -64,6 +64,7 @@
     <string name="fecha_titulo">Comprado:</string>
     <string name="total_titulo">Total:</string>
     <string name="token_google" translatable="false">262784001552-rr5ciiul1gmjqergsje0ddmo5en3p8c5.apps.googleusercontent.com</string>
+    <string name="Agregar_imagen">Agregar</string>
 
 
 </resources>

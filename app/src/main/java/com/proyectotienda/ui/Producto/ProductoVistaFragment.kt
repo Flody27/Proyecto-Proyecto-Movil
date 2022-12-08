@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.proyectotienda.R
 import com.proyectotienda.adapter.TallaAdapter
 import com.proyectotienda.adapter.TallaAdminAdapter
@@ -57,6 +58,10 @@ class ProductoVistaFragment : Fragment() {
         binding.tituloProducto.text = args.producto.nombre
         binding.precioProducto.text = args.producto.precio.toString()
 
+        Glide.with(binding.root.context)
+            .load(args.producto.imagen)
+            .into(binding.imagenProducto)
+
         tallas = args.producto.tallas
 
         binding.btEditarProducto.setOnClickListener {
@@ -94,7 +99,8 @@ class ProductoVistaFragment : Fragment() {
             val productoID = args.producto.id
             val producto = args.producto.nombre
             val precio = args.producto.precio
-            val carrito = Carrito("", productoID, producto, precio, 1, talla)
+            val imagen = args.producto.imagen
+            val carrito = Carrito("", productoID, producto, precio, 1, imagen,talla)
             carritoViewModel.addCarrito(carrito)
             Toast.makeText(
                 requireContext(),

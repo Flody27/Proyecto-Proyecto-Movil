@@ -16,15 +16,11 @@ import java.io.File
 class ImagenUtiles (
     private val contexto: Context,
     btPhoto: ImageButton,
-    btRotaL: ImageButton,
-    btRotaR: ImageButton,
     private val imagen: ImageView,
     private var tomarFotoActivity: ActivityResultLauncher<Intent>
 ) {
     init {
         btPhoto.setOnClickListener { tomarFoto() }
-        btRotaL.setOnClickListener { imagen.rotation=imagen.rotation-90f }
-        btRotaR.setOnClickListener { imagen.rotation=imagen.rotation+90f }
     }
 
     lateinit var imagenFile: File

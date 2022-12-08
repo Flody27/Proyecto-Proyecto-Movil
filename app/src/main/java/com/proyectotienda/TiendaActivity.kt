@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Window
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.ktx.auth
@@ -19,6 +20,7 @@ class TiendaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityTiendaBinding.inflate(layoutInflater)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(binding.root)
 

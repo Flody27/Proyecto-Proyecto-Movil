@@ -16,7 +16,7 @@
         android:clickable="true"
         android:contentDescription="@string/bt_agregar"
         android:src="@drawable/ic_agregar"
-        app:backgroundTint="@color/azul_claro"
+        app:backgroundTint="#1261CA"
         app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +27,8 @@
         android:id="@+id/Reciclador"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

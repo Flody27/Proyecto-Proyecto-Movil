@@ -2,6 +2,7 @@ package com.proyectotienda.ui.Configuracion
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,36 +45,37 @@ class ConfiguracionFragment : Fragment() {
             compras -> comprasAdpater.setListaCompras(compras)
         }
 
+
+
         val usuario = Firebase.auth.currentUser
         val nombreUsuario = usuario?.displayName
         val correo = usuario?.email
         var foto = usuario?.photoUrl.toString()
+
+        Glide.with(this)
+            .load(R.drawable.logo)
+            .circleCrop()
+            .placeholder(R.drawable.logo)
+            .into(binding.imageView2)
+        binding.usuario.text = correo
 
         if(foto.isNotEmpty()){
             Glide.with(this)
                 .load(foto)
                 .circleCrop()
                 .into(binding.imageView2)
-        }else{
-            Glide.with(this)
-                .load(R.drawable.logo)
-                .circleCrop()
-                .into(binding.imageView2)
+            binding.usuario.text = nombreUsuario
         }
-
-        if (nombreUsuario != null) {
-            binding.usuario.text =  nombreUsuario
-            if(nombreUsuario.isEmpty()){
-                binding.usuario.text = correo
-            }
-        }
-
 
         return binding.root
     }
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
