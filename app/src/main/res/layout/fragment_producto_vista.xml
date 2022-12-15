@@ -52,18 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloProducto" />
 
-    <TextView
-        android:id="@+id/tallas2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/txt_TallasProd"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/precioProducto" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recilcador_tallas"
         android:layout_width="0dp"
@@ -85,6 +73,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/azul_gris_acio"
         android:text="@string/bt_editar_producto"
+        android:visibility="invisible"
         app:cornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bt_agregar_carrito"

@@ -10,15 +10,16 @@ data class Carrito (
     val productoId: String?,
     val producto: String?,
     var precio: Int?,
+    var preciobase: Int?,
     var cantidad: Int?,
     var imagen: String?,
     val talla: String?
     ) : Parcelable {
 
-    constructor() :
-            this("",
+    constructor() : this("",
                 "",
                 "",
+                0,
                 0,
                 0,
                 "",

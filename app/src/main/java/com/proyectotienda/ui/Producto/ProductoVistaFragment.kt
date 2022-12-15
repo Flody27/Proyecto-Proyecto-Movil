@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -16,6 +17,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.proyectotienda.R
 import com.proyectotienda.adapter.TallaAdapter
 import com.proyectotienda.adapter.TallaAdminAdapter
@@ -24,6 +28,7 @@ import com.proyectotienda.databinding.CardTallaBinding
 import com.proyectotienda.databinding.FragmentProductoVistaBinding
 import com.proyectotienda.model.Carrito
 import com.proyectotienda.viewModel.CarritoViewModel
+import com.proyectotienda.viewModel.UsuarioViewModel
 
 
 class ProductoVistaFragment : Fragment() {
@@ -31,6 +36,8 @@ class ProductoVistaFragment : Fragment() {
     private val args by navArgs<ProductoVistaFragmentArgs>()
 
     private lateinit var carritoViewModel: CarritoViewModel
+
+    private lateinit var usuarioViewModel: UsuarioViewModel
 
     private var _binding: FragmentProductoVistaBinding? = null
 
@@ -51,7 +58,10 @@ class ProductoVistaFragment : Fragment() {
     ): View? {
 
         carritoViewModel =
-            ViewModelProvider(this).get(CarritoViewModel::class.java)
+            ViewModelProvider(this)[CarritoViewModel::class.java]
+
+        usuarioViewModel =
+            ViewModelProvider(this)[UsuarioViewModel::class.java]
 
         _binding = FragmentProductoVistaBinding.inflate(inflater, container, false)
 
@@ -63,6 +73,21 @@ class ProductoVistaFragment : Fragment() {
             .into(binding.imagenProducto)
 
         tallas = args.producto.tallas
+
+        val email = Firebase.auth.currentUser?.email
+        var rol = ""
+        usuarioViewModel.getUsuario.observe(viewLifecycleOwner) { usuarios ->
+            for (usuario in usuarios) {
+                if (usuario.correo == email.toString()) {
+                    rol = usuario.rol.toString()
+                    break
+                }
+            }
+            Log.e("ALgo", rol)
+            if (rol == "admin") {
+                binding.btEditarProducto.visibility = Button.VISIBLE
+            }
+        }
 
         binding.btEditarProducto.setOnClickListener {
 
@@ -100,7 +125,7 @@ class ProductoVistaFragment : Fragment() {
             val producto = args.producto.nombre
             val precio = args.producto.precio
             val imagen = args.producto.imagen
-            val carrito = Carrito("", productoID, producto, precio, 1, imagen,talla)
+            val carrito = Carrito("", productoID, producto, precio, precio, 1, imagen, talla)
             carritoViewModel.addCarrito(carrito)
             Toast.makeText(
                 requireContext(),

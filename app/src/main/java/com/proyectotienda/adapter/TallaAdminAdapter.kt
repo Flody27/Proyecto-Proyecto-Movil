@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.proyectotienda.databinding.TallasAdminBinding
@@ -26,11 +27,10 @@ class TallaAdminAdapter : RecyclerView.Adapter<TallaAdminAdapter.TallaViewHolder
             itemBinding.tallasAdmin.setOnClickListener{
 
                 clicks +=1
-                if(clicks == 1){
+                if(clicks == 2){
                     talla = itemBinding.talla.text.toString()
                     eliminar(itemBinding.talla.text.toString())
-                    val gris = Color.parseColor("#BDBDBF")
-                    itemBinding.tallasAdmin.setBackgroundColor(gris)
+                    itemBinding.tallasAdmin.visibility = CardView.INVISIBLE
                     clicks = 0
                 }
 

@@ -64,7 +64,8 @@
     <string name="fecha_titulo">Comprado:</string>
     <string name="total_titulo">Total:</string>
     <string name="token_google" translatable="false">262784001552-rr5ciiul1gmjqergsje0ddmo5en3p8c5.apps.googleusercontent.com</string>
-    <string name="Agregar_imagen">Agregar</string>
+    <string name="Agregar_imagen">Agregar imagen</string>
+    <string name="Actualizar_imagen">Actualizar imagen</string>
 
 
 </resources>

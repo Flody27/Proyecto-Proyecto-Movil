@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -16,8 +17,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.proyectotienda.databinding.ActivityMainBinding
+import com.proyectotienda.model.Usuario
+import com.proyectotienda.viewModel.UsuarioViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -28,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var googleSignInClient : GoogleSignInClient
 
+    private lateinit var usuarioViewModel : UsuarioViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -36,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         FirebaseApp.initializeApp(this)
         auth = Firebase.auth
+
+        usuarioViewModel =
+            ViewModelProvider(this)[UsuarioViewModel::class.java]
 
         binding.btIniciarSesion.setOnClickListener {
             iniciarSesion();
@@ -97,6 +107,8 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d("Creando usuario", "Registrado")
                     user = auth.currentUser
+                    val usuario = Usuario("",email,"cliente")
+                    usuarioViewModel.addUsuario(usuario)
                     actuliza(user)
                 } else {
                     Log.d("Creando usuario", "Fallo")
@@ -108,6 +120,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun actuliza(user: FirebaseUser?) {
         if (user != null) {
+
             val intent = Intent(this, TiendaActivity::class.java)
             startActivity(intent)
         }
@@ -118,6 +131,23 @@ class MainActivity : AppCompatActivity() {
         val usuario = auth.currentUser
         actuliza(usuario)
     }
+
+//    fun isAdmin(){
+//        val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+//        val coleccion1 = "Usuario"
+//        val email = binding.etCorreo.text.trim().toString()
+//        val db : DocumentReference = firestore.collection(coleccion1).document(email)
+//        db.get().addOnSuccessListener{
+//            if(it.getString("admin") != null){
+//                Log.e("Admin","Es admin")
+//            }else{
+//                Log.e("Error","Que a pasao")
+//            }
+//        }
+//    }
+
+
+
 
     private fun iniciarSesion() {
         val email = binding.etCorreo.text.toString()

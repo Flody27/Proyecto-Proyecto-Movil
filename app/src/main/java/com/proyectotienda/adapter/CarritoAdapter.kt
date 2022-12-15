@@ -4,14 +4,22 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.proyectotienda.databinding.CardItemCarritoBinding
 import com.proyectotienda.model.Carrito
+import com.proyectotienda.model.Producto
+import kotlin.math.log
 
 class CarritoAdapter : RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() {
+
+    var precio = 0
 
     inner class CarritoViewHolder(private val itemBinding: CardItemCarritoBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
@@ -23,41 +31,35 @@ class CarritoAdapter : RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() 
             itemBinding.tvTalla.text = carrito.talla
             itemBinding.tvCantidad.text = carrito.cantidad.toString()
             itemBinding.tvPrecio.text = "$${carrito.precio}"
-
+            precio = carrito.preciobase!!
             Glide.with(itemBinding.root.context)
                 .load(carrito.imagen)
-
                 .into(itemBinding.imageView3)
-
             val precioBase = carrito.precio
-
             if (precioBase != null) {
 
                 itemBinding.btAumentar.setOnClickListener {
                     carrito.cantidad = carrito.cantidad?.plus(1)
                     if (carrito.cantidad!! >= 1) {
-                        itemBinding.btDisminuir.isEnabled = true
+                        itemBinding.btDisminuir.visibility = ImageButton.VISIBLE
                     }
-
-                    carrito.precio =  precioBase * carrito.cantidad!!
+                    carrito.precio = precioBase * carrito.cantidad!!
                     itemBinding.tvCantidad.text = carrito.cantidad.toString()
                     itemBinding.tvPrecio.text = "$${carrito.precio}"
-                    Log.e("Precio","${carrito.precio} , ${carrito.cantidad}")
+
                 }
 
                 itemBinding.btDisminuir.setOnClickListener {
                     carrito.cantidad = carrito.cantidad?.minus(1)
-
                     if (carrito.cantidad!! <= 1) {
-                        itemBinding.btDisminuir.isEnabled = false
+                        itemBinding.btDisminuir.visibility = ImageButton.INVISIBLE
                     }
 
-                    carrito.precio =  precioBase * carrito.cantidad!!
+                    carrito.precio = precioBase * carrito.cantidad!!
                     itemBinding.tvCantidad.text = carrito.cantidad.toString()
                     itemBinding.tvPrecio.text = "$${carrito.precio}"
-                    Log.e("Precio","${carrito.precio} , ${carrito.cantidad}")
-                }
 
+                }
             }
 
         }
@@ -65,6 +67,7 @@ class CarritoAdapter : RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() 
     }
 
     private var listaProductosCarrito = emptyList<Carrito>()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarritoViewHolder {
 
@@ -94,6 +97,16 @@ class CarritoAdapter : RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() 
         notifyDataSetChanged()
     }
 
+
+
+    fun needRefresh() {
+
+        listaProductosCarrito.forEach {
+            it.cantidad = 1
+            it.precio = precio
+        }
+
+    }
 
 
 }

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.children
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -61,7 +62,6 @@ class CarritoFragment : Fragment() {
         reciclador = binding.recicladorCarrito
         reciclador.adapter = carritoAdapter
         reciclador.layoutManager = LinearLayoutManager(requireContext())
-        var precio:Int? = 0
 
         carritoViewModel.getCarrito.observe(viewLifecycleOwner) { carrito ->
             carritoAdapter.setListaProductos(carrito)
@@ -71,13 +71,6 @@ class CarritoFragment : Fragment() {
                 binding.btRealizarCompra.setBackgroundColor(gris)
                 binding.vacio.isVisible = true
             }
-
-            if (precio != null) {
-                carrito.forEach {
-                    precio+= it.precio!!
-                }
-            }
-            binding.precioTotal.text = "$${precio}"
 
         }
 
@@ -94,6 +87,10 @@ class CarritoFragment : Fragment() {
 
 
 
+    override fun onPause() {
+        super.onPause()
+        carritoAdapter.needRefresh()
+    }
 
     private fun realizarCompra() {
         var compras: Compras

@@ -96,6 +96,7 @@
             android:enabled="true"
             android:minWidth="40dp"
             android:minHeight="40dp"
+            android:visibility="invisible"
             app:itemIconTint="@drawable/selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

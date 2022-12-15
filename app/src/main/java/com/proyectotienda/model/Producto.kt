@@ -10,7 +10,7 @@ data class Producto(
     var id: String,
     val nombre: String?,
     val precio: Int?,
-    val imagen: String?,
+    var imagen: String?,
     var tallas: List<String?>,
     ) : Parcelable{
 

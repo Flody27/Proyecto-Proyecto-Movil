@@ -16,6 +16,7 @@
         android:clickable="true"
         android:contentDescription="@string/bt_agregar"
         android:src="@drawable/ic_agregar"
+        android:visibility="invisible"
         app:backgroundTint="#1261CA"
         app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"

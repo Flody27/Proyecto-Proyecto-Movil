@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import com.proyectotienda.R
 import com.proyectotienda.databinding.FragmentAddProductoBinding
@@ -35,9 +36,9 @@ class AddProductoFragment : Fragment() {
 
     private var _binding: FragmentAddProductoBinding? = null
     private val binding get() = _binding!!
-    private lateinit var producto : Producto
+    private lateinit var producto: Producto
 
-    private var imagen:String? = ""
+    private var imagen: String? = ""
 
     private var tallas: List<String?> = ArrayList()
 
@@ -46,48 +47,34 @@ class AddProductoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         productoViewModel =
+        productoViewModel =
             ViewModelProvider(this).get(ProductoViewModel::class.java)
 
-        producto = Producto("","",0,"",ArrayList())
+        producto = Producto("", "", 0, "", ArrayList())
 
         _binding = FragmentAddProductoBinding.inflate(inflater, container, false)
-        binding.btAddProducto.setOnClickListener{addProducto()}
 
         binding.btAgregarTalla.setOnClickListener {
             agregarTalla()
             val tallasAdpater = TallaAdminAdapter()
             val recilador = binding.RecicladorTallas
             recilador.adapter = tallasAdpater
-            recilador.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false)
+            recilador.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             tallasAdpater.setListaTallas(tallas)
 
         }
-        val rutaNube = "LuagareApp${Firebase.auth.currentUser?.email}/imagenes"
         val storageRef = Firebase.storage.reference;
-
+        var imageUri = ""
         var imagePickerActivityResult: ActivityResultLauncher<Intent> =
-            registerForActivityResult( ActivityResultContracts.StartActivityForResult()) { result ->
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result != null) {
-                    val imageUri: Uri? = result.data?.data
-                    val image = getFileName(requireContext() ,imageUri!!)
-                    val uploadTask = storageRef.child("rutaNube/$image").putFile(imageUri)
-                    uploadTask.addOnSuccessListener {
-                        storageRef.child("rutaNube/$image").downloadUrl.addOnSuccessListener {
-                            imagen =it.toString()
-                            Glide.with(this)
-                                .load(it)
-                                .into(binding.imageView4)
-                            Log.e("Firebase", "download passed")
-                        }.addOnFailureListener {
-                            Log.e("Firebase", "Failed in downloading")
-                        }
-                    }.addOnFailureListener {
-                        Log.e("Firebase", "Image Upload fail")
-                    }
+                    imageUri = result.data?.data.toString()
+                    Glide.with(this)
+                        .load(imageUri.toUri())
+                        .into(binding.imageView4)
                 }
             }
-
 
         binding.btAddImage.setOnClickListener {
             val galleryIntent = Intent(Intent.ACTION_PICK)
@@ -95,15 +82,35 @@ class AddProductoFragment : Fragment() {
             imagePickerActivityResult.launch(galleryIntent)
         }
 
+        binding.btAddProducto.setOnClickListener {
+            if (imageUri.isEmpty()) {
+                addProducto()
+            } else {
+                val image = getFileName(requireContext(), imageUri.toUri())
+                val uploadTask = storageRef.child("rutaNube/$image").putFile(imageUri.toUri())
+                uploadTask.addOnSuccessListener {
+                    storageRef.child("rutaNube/$image").downloadUrl.addOnSuccessListener {
+                        imagen = it.toString()
+                        addProducto()
+                        Log.e("Firebase", "download passed")
+                    }.addOnFailureListener {
+                        Log.e("Firebase", "Failed in downloading")
+                    }
+                }.addOnFailureListener {
+                    Log.e("Firebase", "Image Upload fail")
+                }
+            }
+        }
+
         return binding.root
     }
 
     private fun agregarTalla() {
-        if(binding.etTallasProd.text.isNotEmpty()){
-            tallas+=binding.etTallasProd.text.toString()
+        if (binding.etTallasProd.text.isNotEmpty()) {
+            tallas += binding.etTallasProd.text.toString()
             binding.etTallasProd.setText("")
-        }else{
-            Toast.makeText(requireContext(),"Campo vacio",Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(requireContext(), "Campo vacio", Toast.LENGTH_LONG).show()
         }
 
     }
@@ -114,7 +121,7 @@ class AddProductoFragment : Fragment() {
             val cursor = context.contentResolver.query(uri, null, null, null, null)
             cursor.use {
                 if (cursor != null) {
-                    if(cursor.moveToFirst()) {
+                    if (cursor.moveToFirst()) {
                         return cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
                     }
                 }
@@ -126,15 +133,17 @@ class AddProductoFragment : Fragment() {
     private fun addProducto() {
         val nombreProducto = binding.etNombreProd.text.toString()
         if (nombreProducto.isNotEmpty()) {
-
-
             val precioProducto = binding.etPrecioProd.text.toString().toInt()
-            producto = Producto("",nombreProducto,precioProducto,imagen,tallas)
+            producto = Producto("", nombreProducto, precioProducto, imagen, tallas)
             productoViewModel.addProducto(producto)
-            Toast.makeText(requireContext(),getString(R.string.msg_add_producto),Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.msg_add_producto),
+                Toast.LENGTH_SHORT
+            ).show()
             findNavController().navigate(R.id.action_addProductoFragment_to_navigation_productos)
-        }else{
-            Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.msg_data), Toast.LENGTH_LONG).show()
         }
 
 

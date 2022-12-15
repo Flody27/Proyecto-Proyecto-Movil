@@ -1,5 +1,6 @@
 package com.proyectotienda
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Window
@@ -34,6 +35,9 @@ class TiendaActivity : AppCompatActivity() {
         binding.btCerrarSesion.setOnClickListener {
             Firebase.auth.signOut()
             finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
         }
     }
 }

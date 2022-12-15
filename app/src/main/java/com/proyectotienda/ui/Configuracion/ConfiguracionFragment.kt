@@ -1,22 +1,20 @@
 package com.proyectotienda.ui.Configuracion
 
-import android.graphics.drawable.Drawable
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.proyectotienda.R
 import com.proyectotienda.adapter.CompraAdapter
 import com.proyectotienda.databinding.FragmentConfiguracionBinding
 import com.proyectotienda.viewModel.ComprasViewModel
+
 
 class ConfiguracionFragment : Fragment() {
 
@@ -26,6 +24,7 @@ class ConfiguracionFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,23 +48,28 @@ class ConfiguracionFragment : Fragment() {
 
         val usuario = Firebase.auth.currentUser
         val nombreUsuario = usuario?.displayName
+        val foto = usuario?.photoUrl.toString()
         val correo = usuario?.email
-        var foto = usuario?.photoUrl.toString()
-
-        Glide.with(this)
-            .load(R.drawable.logo)
-            .circleCrop()
-            .placeholder(R.drawable.logo)
-            .into(binding.imageView2)
+        val image = resources.getDrawable(com.proyectotienda.R.drawable.logo)
+//        Log.e("preuba","Correo: ${Firebase.auth.currentUser?.email} usuario $nombreUsuario foto $foto")
         binding.usuario.text = correo
 
-        if(foto.isNotEmpty()){
+        Glide.with(this)
+            .load(image)
+            .circleCrop()
+            .into(binding.imageView2)
+
+        if(!nombreUsuario.isNullOrEmpty()){
             Glide.with(this)
                 .load(foto)
                 .circleCrop()
                 .into(binding.imageView2)
             binding.usuario.text = nombreUsuario
         }
+
+
+
+
 
         return binding.root
     }
